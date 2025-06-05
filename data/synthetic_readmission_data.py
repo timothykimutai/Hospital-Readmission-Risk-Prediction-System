@@ -8,7 +8,7 @@ def generate_synthetic_data(samples= 10000):
     
     # Set demographics
     ages = np.random.normal(65,15, samples).astype(int) # Mean (μ) = 65, Standard deviation (σ) = 15
-    ages=np.clip(18,100) # All values < 18 are set to 18. All values > 100 are set to 100
+    ages = np.clip(ages, 18, 100) # All values < 18 are set to 18. All values > 100 are set to 100
     genders = np.random.choice(['Male', 'Female'], samples, p=[0.48, 0.52] ) # 48% of the time, the value will be 'Male'. 52% of the time, the value will be 'Female'
     races = np.random.choice(['White', 'Black', 'Asian', 'Hispanic', 'Other'],
                              samples, p=[0.6, 0.2, 0.1, 0.08, 0.02]) # 60% White, 20% Black, 10% Asian, 8% Hispanic, 2% Other

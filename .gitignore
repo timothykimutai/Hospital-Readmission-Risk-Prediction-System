@@ -52,7 +52,4 @@ ENV/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db
-
-# Exclude synthetic readmission data
-!data/synthetic_readmission_data.csv 
+Thumbs.db 
