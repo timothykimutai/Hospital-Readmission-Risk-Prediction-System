@@ -9,6 +9,7 @@ A machine learning-based web application that predicts the risk of hospital read
 - ⚖️ **Fairness Analysis**: Analyzes model performance across different demographic groups
 - 💾 **Data Storage**: Stores patient records, admissions, and predictions in a database
 - 🎨 **Modern UI**: Clean and intuitive user interface with responsive design
+- 🔄 **CI/CD Pipeline**: Automated testing, linting, and deployment
 
 ## Tech Stack
 
@@ -18,6 +19,8 @@ A machine learning-based web application that predicts the risk of hospital read
 - **Database**: SQLAlchemy
 - **Data Processing**: pandas, numpy
 - **Visualization**: matplotlib
+- **CI/CD**: GitHub Actions
+- **Testing**: pytest, flake8, black
 
 ## Setup Instructions
 
@@ -48,10 +51,45 @@ python -c "from db.database import db; db.init_db()"
 streamlit run src/app.py
 ```
 
+## Development
+
+### Running Tests
+```bash
+pytest tests/
+```
+
+### Code Formatting
+```bash
+black .
+flake8 .
+```
+
+### CI/CD Pipeline
+
+The project uses GitHub Actions for continuous integration and deployment:
+
+1. **Testing**: Runs on every push and pull request
+   - Unit tests with pytest
+   - Code coverage reporting
+   - Linting with flake8
+   - Code formatting check with black
+
+2. **Deployment**: Runs on main branch after successful tests
+   - Deploys to Streamlit Cloud
+   - Requires STREAMLIT_API_KEY secret
+
+To set up the CI/CD pipeline:
+1. Fork the repository
+2. Add your STREAMLIT_API_KEY to repository secrets
+3. Enable GitHub Actions in your repository settings
+
 ## Project Structure
 
 ```
 hospital-readmission-prediction/
+├── .github/
+│   └── workflows/
+│       └── test.yml
 ├── data/
 │   └── synthetic_readmission_data.csv
 ├── models/
@@ -62,6 +100,8 @@ hospital-readmission-prediction/
 │   ├── fairness_analysis.py
 │   └── services/
 │       └── patient_service.py
+├── tests/
+│   └── test_app.py
 ├── db/
 │   ├── database.py
 │   └── models.py
